@@ -31,7 +31,7 @@ For instance, a random variable from a uniform distribution between 0 and 1 can 
 double u = rng.Uniform01();
 ```
 
-and a random variable form an exponential distribution with mean m as
+and a random variable form an exponential distribution with mean ```m``` as
 
 ```C++
 double m = 0.7;
