@@ -29,7 +29,7 @@
  *
  * @section getting-started Getting started
  * To use the class include <em>either</em> myrngMT.h (MT19937a) <em>or</em> myrngWELL.h (WELL1024a)
- * in your code. Including the header Files creates an instance of the appropriate
+ * in your code. Including the header files creates an instance of the appropriate
  * myrng::RandomVariates class called @p rng. Then, random variates can be obtained by calling
  * the corresponding member functions.
  *

@@ -18,3 +18,42 @@ distribution is based on [Marsagli and Tsang, 2000][4].
 [2]: http://dx.doi.org/10.1145/1132973.1132974 "F. Panneton et al.: Improved long-period generators based on linear recurrences modulo 2, ACM Transactions on Mathematical Software, 32(1), 1-16,2006."
 [3]: http://dl.acm.org/citation.cfm?id=550113 "A.M. Law and W.D. Kelton: Simulation, modeling and analysis, Third Edition, McGraw Hill, 2006."
 [4]: http://dx.doi.org/10.1145/358407.358414 "G. Marsaglia and W.W. Tsang: A simple method for generating gamma variables, ACM TOMS 26, 2000."
+ 
+## Getting started
+To use the class include _either_ myrngMT.h (MT19937a) _or_ myrngWELL.h (WELL1024a)
+in your code. Including the header files creates an instance of the appropriate
+myrng::RandomVariates class called rng. Then, random variates can be obtained by calling
+the corresponding member functions.
+
+For instance, a random variable from a uniform distribution between 0 and 1 can be obtained as
+```C++
+double u = rng.Uniform01();
+```
+and a random variable form an exponential distribution with mean @c m as
+```C++
+double m = 0.7;
+double v = rng.Exponential(m);
+```
+
+If you prefer to create your own instance of the random number generator instead of using a
+global variable, do _not_ include the above header files. For this purpose, use
+```C++
+#include <myrng.h>
+myrng::WELL1024a rng_well; // random variates using the WELL1024a generator
+myrng::MT19937 rng_mt;     // random variates using the MT19937 generator
+double x = rng_well.Exponential(0.3);
+double y = rng_mt.Exponential(0.7);
+```
+
+For further information see the full source code documentation.
+
+## Disclaimer
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
