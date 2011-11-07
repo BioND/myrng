@@ -26,10 +26,13 @@ myrng::RandomVariates class called rng. Then, random variates can be obtained by
 the corresponding member functions.
 
 For instance, a random variable from a uniform distribution between 0 and 1 can be obtained as
+
 ```C++
 double u = rng.Uniform01();
 ```
-and a random variable form an exponential distribution with mean @c m as
+
+and a random variable form an exponential distribution with mean m as
+
 ```C++
 double m = 0.7;
 double v = rng.Exponential(m);
@@ -37,6 +40,7 @@ double v = rng.Exponential(m);
 
 If you prefer to create your own instance of the random number generator instead of using a
 global variable, do _not_ include the above header files. For this purpose, use
+
 ```C++
 #include <myrng.h>
 myrng::WELL1024a rng_well; // random variates using the WELL1024a generator
