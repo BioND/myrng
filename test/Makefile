@@ -41,3 +41,5 @@ myrngMT.o MTEngine.o: $(MTFILES)
 
 clean:
 	rm *.o testWELL testMT
+
+.PHONY: all test clean
