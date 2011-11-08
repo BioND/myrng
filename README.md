@@ -1,17 +1,17 @@
 # MyRNG: A convenient random number generator
 
-The MyRNG C++ classes provide two very efficient random number generators 
-and several methods for generating random variates. You can choose between 
+The MyRNG C++ classes provide two very efficient random number generators
+and several methods for generating random variates. You can choose between
 the Mersenne Twister MT19937a algorithm in the implementation of [Makoto
-Matsumoto and Takuji Nishimura][1] and the well-equidistributed long-period 
+Matsumoto and Takuji Nishimura][1] and the well-equidistributed long-period
 linear generator [WELL1024a][2] implemented by Marton Morvai. Both generators are
 essentially shuffled linear congruential random number generators; they should
-not be used for cryptography applications but should otherwise cover most 
-scientific needs. While the WELL1024a is slightly faster in the current 
-implementation, the MT19937a has an astronomical recurrence time of 2^19937. 
-Furthermore, the methods are provided to generate several random variates 
+not be used for cryptography applications but should otherwise cover most
+scientific needs. While the WELL1024a is slightly faster in the current
+implementation, the MT19937a has an astronomical recurrence time of 2^19937.
+Furthermore, the methods are provided to generate several random variates
 including uniform, Gaussian, Beta, and Gamma distributions. Generation of most
-random variates is based on [Law and Kelton, 2000][3]. Generation of the Gamma 
+random variates is based on [Law and Kelton, 2000][3]. Generation of the Gamma
 distribution is based on [Marsagli and Tsang, 2000][4].
 
 [1]: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html "M. Matsumoto and T. Nishimura. Personal web pages." 
@@ -28,12 +28,14 @@ the corresponding member functions.
 For instance, a random variable from a uniform distribution between 0 and 1 can be obtained as
 
 ```C++
+#include <myrngWELL.h>      // use the WELL1024a generator
 double u = rng.Uniform01();
 ```
 
 and a random variable form an exponential distribution with mean ```m``` as
 
 ```C++
+#include <myrngMT.h>       // let's use the MT19937 generator
 double m = 0.7;
 double v = rng.Exponential(m);
 ```
