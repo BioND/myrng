@@ -20,7 +20,7 @@ distribution is based on [Marsagli and Tsang, 2000][4].
 [4]: http://dx.doi.org/10.1145/358407.358414 "G. Marsaglia and W.W. Tsang: A simple method for generating gamma variables, ACM TOMS 26, 2000."
  
 ## Getting started
-To use the class include _either_ myrngMT.h (MT19937a) _or_ myrngWELL.h (WELL1024a)
+To use the class include _either_ `myrngMT.h` (MT19937a) _or_ `myrngWELL.h` (WELL1024a)
 in your code. Including the header files creates an instance of the appropriate
 myrng::RandomVariates class called rng. Then, random variates can be obtained by calling
 the corresponding member functions.
@@ -32,7 +32,7 @@ For instance, a random variable from a uniform distribution between 0 and 1 can 
 double u = rng.Uniform01();
 ```
 
-and a random variable form an exponential distribution with mean ```m``` as
+and a random variable from an exponential distribution with mean `m` as
 
 ```C++
 #include <myrngMT.h>       // let's use the MT19937 generator
@@ -41,7 +41,7 @@ double v = rng.Exponential(m);
 ```
 
 If you prefer to create your own instance of the random number generator instead of using a
-global variable, do _not_ include the above header files. For this purpose, use
+global variable, do _not_ include the above header files. Instead, use for this purpose
 
 ```C++
 #include <myrng.h>
