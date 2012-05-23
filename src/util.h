@@ -21,7 +21,7 @@ namespace util
  * @return random element in @p container
  */
 template<class U, class V, class RandomGen>
-U& random_from(V& container, RandomGen& rnd)
+inline U& random_from(V& container, RandomGen& rnd)
 {
 	int i = rnd.IntFromTo(0, container.size() - 1);
 	return container[i];
@@ -35,7 +35,7 @@ U& random_from(V& container, RandomGen& rnd)
  * @return random iterator within range or @p end if empty range
  */
 template<class _Iter, class RandomGen>
-_Iter random_from(_Iter begin, _Iter end, RandomGen& rnd)
+inline _Iter random_from(_Iter begin, _Iter end, RandomGen& rnd)
 {
 	if (begin == end)
 		return end;
@@ -52,7 +52,7 @@ _Iter random_from(_Iter begin, _Iter end, RandomGen& rnd)
  * @return random iterator within @p range or @p range.second if empty range
  */
 template<class _Iter, class RandomGen>
-_Iter random_from(std::pair<_Iter, _Iter> range, RandomGen& rnd)
+inline _Iter random_from(std::pair<_Iter, _Iter> range, RandomGen& rnd)
 {
 	return random_from(range.first, range.second, rnd);
 }
