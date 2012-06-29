@@ -16,14 +16,16 @@ namespace util
 {
 /**
  * Get random element from container
- * @param container Random access container (e.g., std::vector)
- * @param rnd Random variates generator
+ * @param container Random access container
+ * @param rnd Random number generator
  * @return random element in @p container
  */
 template<class U, class V, class RandomGen>
-inline U& random_from(V& container, RandomGen& rnd)
+U& random_from(V& container, RandomGen& rnd)
 {
-	int i = rnd.IntFromTo(0, container.size() - 1);
+	typedef typename V::size_type sz_t;
+	sz_t from = 0, to = container.size() - 1;
+	sz_t i = rnd.IntFromTo(from, to);
 	return container[i];
 }
 
@@ -31,15 +33,17 @@ inline U& random_from(V& container, RandomGen& rnd)
  * Get random element from range
  * @param begin iterator pointing to beginning of range
  * @param end iterator pointing to (past the) end of range
- * @param rnd random variates generator
+ * @param rnd random number generator
  * @return random iterator within range or @p end if empty range
  */
 template<class _Iter, class RandomGen>
-inline _Iter random_from(_Iter begin, _Iter end, RandomGen& rnd)
+_Iter random_from(_Iter begin, _Iter end, RandomGen& rnd)
 {
 	if (begin == end)
 		return end;
-	int i = rnd.IntFromTo(0, std::distance(begin, end) - 1);
+	typedef typename std::iterator_traits<_Iter>::difference_type d_t;
+	d_t from = 0, to = std::distance(begin, end) - 1;
+	d_t i = rnd.IntFromTo(from, to);
 	std::advance(begin, i);
 	assert(begin != end);
 	return begin;
