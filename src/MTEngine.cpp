@@ -17,7 +17,7 @@ MTEngine::MTEngine()
 	assert(sizeof(long) >= 4);
 	mti = 624 + 1;
 	//   unsigned long mt[624];
-	seed((unsigned long) time(0));
+	seed((unsigned long) std::time(0));
 }
 
 void MTEngine::seed(unsigned long int s)
