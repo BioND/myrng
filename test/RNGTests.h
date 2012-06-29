@@ -21,6 +21,7 @@ public:
 		testFromTo<RNG>(rng);
 		testDice<RNG>(rng);
 		testIntFromTo<RNG>(rng);
+		testUIntFromTo<RNG>(rng);
 		testChance<RNG>(rng);
 		testChoices<RNG>(rng);
 		testNormal01Polar<RNG>(rng);
@@ -139,6 +140,35 @@ private:
 		for (i = 0; i < 1e7; i++)
 		{
 			int q = rng.IntFromTo(from, to);
+			q -= from;
+			x[q]++;
+		}
+		long t2 = time(0);
+		for (i = 0; i < (to - from) + 1; i++)
+		{
+			std::cout << "    " << i + from << ": "
+					<< (static_cast<double>(x[i]) / 1e7 * 100.0) << "% ["
+					<< (100.0 / (to - from + 1)) << "%]\n";
+		}
+		std::cout << "    Time: " << t2 - t1 << "s\n\n";
+	}
+
+	template<class RNG>
+	static void testUIntFromTo(RNG& rng)
+	{
+		std::cout << "  Testing UNSIGNED INTEGER FROM-TO ----------------\n";
+		typedef unsigned int uint;
+		uint x[11];
+		uint from = 0;
+		uint to = rng.Dice(10);
+		std::cout << "    Test task: From " << from << " to " << to << "\n";
+		uint i;
+		for (i = 0; i < 11; i++)
+			x[i] = 0;
+		long t1 = time(0);
+		for (i = 0; i < 1e7; i++)
+		{
+			uint q = rng.IntFromTo(from, to);
 			q -= from;
 			x[q]++;
 		}
