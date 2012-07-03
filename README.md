@@ -21,8 +21,8 @@ distribution is based on [Marsagli and Tsang, 2000][4].
  
 ## Getting started
 To use the class include _either_ `myrngMT.h` (MT19937a) _or_ `myrngWELL.h` (WELL1024a)
-in your code. Including the header files creates an instance of the appropriate
-myrng::RandomVariates class called rng. Then, random variates can be obtained by calling
+in your code. Including the header files creates an instance of the corresponding
+`myrng::RandomVariates` class called `rng`. Then, random variates can be obtained by calling
 the corresponding member functions.
 
 For instance, a random variable from a uniform distribution between 0 and 1 can be obtained as
@@ -51,7 +51,8 @@ double x = rng_well.Exponential(0.3);
 double y = rng_mt.Exponential(0.7);
 ```
 
-For further information see the full source code documentation.
+For further information see the full source code documentation, which you can extract
+using the doxygen source code documentation tool.
 
 ## Disclaimer
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
