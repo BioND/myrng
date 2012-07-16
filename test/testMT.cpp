@@ -18,7 +18,7 @@
  */
 #include <iostream>
 #include <ctime>
-#include "../src/myrngMT.h"
+#include <myrng/myrngMT.h>
 #include "RNGTests.h"
 
 int main(int argc, char *argv[])
