@@ -8,4 +8,4 @@ Description: A convenient random number generator implementing WELL1024a
 Requires: 
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -l@PACKAGE_NAME@WELL-@PACKAGE_VERSION@
-Cflags: -I${includedir}
+Cflags: -I${includedir}/myrng

@@ -8,4 +8,4 @@ Description: A convenient random number generator implementing the Mersenne Twis
 Requires: 
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -l@PACKAGE_NAME@MT-@PACKAGE_VERSION@
-Cflags: -I${includedir}
+Cflags: -I${includedir}/myrng

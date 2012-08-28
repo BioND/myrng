@@ -1,10 +1,30 @@
+2012-08-28 12:53:59 +0200 Gerd Zschaler 
+
+	* Update README.md (HEAD, v1.5, origin/master, origin/HEAD, master)
+
+2012-08-28 12:39:35 +0200 Gerd Zschaler 
+
+	* Remove obsolete test makefile
+
+2012-08-28 12:00:22 +0200 Gerd Zschaler 
+
+	* Allow for header-only use
+
+2012-08-28 11:44:26 +0200 Gerd Zschaler 
+
+	* Fix wrong include path in pkgconfig data
+
+2012-07-16 17:21:35 +0200 Gerd Zschaler 
+
+	* Add author information and change log
+
 2012-07-16 17:16:30 +0200 Gerd Zschaler 
 
-	* Compile as shared libraries using GNU Autotools (HEAD, master)
+	* Compile as shared libraries using GNU Autotools
 
 2012-07-03 15:30:10 +0300 Gerd Zschaler 
 
-	* Readme formatting, mention doxygen (origin/master, origin/HEAD)
+	* Readme formatting, mention doxygen
 
 2012-06-29 13:32:17 +0200 Gerd Zschaler 
 

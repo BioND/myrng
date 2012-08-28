@@ -90,8 +90,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libmyrngMT_@PACKAGE_VERSION@_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am_libmyrngMT_@PACKAGE_VERSION@_la_OBJECTS =  \
-	myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo \
-	myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo
+	myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo
 libmyrngMT_@PACKAGE_VERSION@_la_OBJECTS =  \
 	$(am_libmyrngMT_@PACKAGE_VERSION@_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -103,8 +102,7 @@ libmyrngMT_@PACKAGE_VERSION@_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(libmyrngMT_@PACKAGE_VERSION@_la_LDFLAGS) $(LDFLAGS) -o $@
 libmyrngWELL_@PACKAGE_VERSION@_la_LIBADD =
 am_libmyrngWELL_@PACKAGE_VERSION@_la_OBJECTS =  \
-	myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo \
-	myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo
+	myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo
 libmyrngWELL_@PACKAGE_VERSION@_la_OBJECTS =  \
 	$(am_libmyrngWELL_@PACKAGE_VERSION@_la_OBJECTS)
 libmyrngWELL_@PACKAGE_VERSION@_la_LINK = $(LIBTOOL) $(AM_V_lt) \
@@ -324,12 +322,10 @@ libmyrngMT_@PACKAGE_VERSION@_la_CPPFLAGS = -DNDEBUG
 libmyrngWELL_@PACKAGE_VERSION@_la_LDFLAGS = -version-info 0:0:0
 libmyrngMT_@PACKAGE_VERSION@_la_LDFLAGS = -version-info 0:0:0
 libmyrngWELL_@PACKAGE_VERSION@_la_SOURCES = \
-	myrng/myrngWELL.cpp \
-	myrng/WELLEngine.cpp
+	myrng/myrngWELL.cpp
 
 libmyrngMT_@PACKAGE_VERSION@_la_SOURCES = \
-	myrng/myrngMT.cpp \
-	myrng/MTEngine.cpp
+	myrng/myrngMT.cpp 
 
 nobase_include_HEADERS = \
 	myrng/myrng.h \
@@ -342,8 +338,8 @@ nobase_include_HEADERS = \
 
 testWELL_SOURCES = test/testWELL.cpp test/RNGTests.h
 testMT_SOURCES = test/testMT.cpp test/RNGTests.h
-testWELL_CXXFLAGS = -O2 -DNDEBUG
-testMT_CXXFLAGS = -O2 -DNDEBUG
+testWELL_CXXFLAGS = -O2 -DNDEBUG -I$(srcdir)/myrng
+testMT_CXXFLAGS = -O2 -DNDEBUG -I$(srcdir)/myrng
 testWELL_LDADD = libmyrngWELL-@PACKAGE_VERSION@.la
 testMT_LDADD = libmyrngMT-@PACKAGE_VERSION@.la
 @HAVE_DOXYGEN_TRUE@DOCDIR = doc
@@ -431,13 +427,9 @@ myrng/$(DEPDIR)/$(am__dirstamp):
 	@: > myrng/$(DEPDIR)/$(am__dirstamp)
 myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo:  \
 	myrng/$(am__dirstamp) myrng/$(DEPDIR)/$(am__dirstamp)
-myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo:  \
-	myrng/$(am__dirstamp) myrng/$(DEPDIR)/$(am__dirstamp)
 libmyrngMT-@PACKAGE_VERSION@.la: $(libmyrngMT_@PACKAGE_VERSION@_la_OBJECTS) $(libmyrngMT_@PACKAGE_VERSION@_la_DEPENDENCIES) $(EXTRA_libmyrngMT_@PACKAGE_VERSION@_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libmyrngMT_@PACKAGE_VERSION@_la_LINK) -rpath $(libdir) $(libmyrngMT_@PACKAGE_VERSION@_la_OBJECTS) $(libmyrngMT_@PACKAGE_VERSION@_la_LIBADD) $(LIBS)
 myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo:  \
-	myrng/$(am__dirstamp) myrng/$(DEPDIR)/$(am__dirstamp)
-myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo:  \
 	myrng/$(am__dirstamp) myrng/$(DEPDIR)/$(am__dirstamp)
 libmyrngWELL-@PACKAGE_VERSION@.la: $(libmyrngWELL_@PACKAGE_VERSION@_la_OBJECTS) $(libmyrngWELL_@PACKAGE_VERSION@_la_DEPENDENCIES) $(EXTRA_libmyrngWELL_@PACKAGE_VERSION@_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libmyrngWELL_@PACKAGE_VERSION@_la_LINK) -rpath $(libdir) $(libmyrngWELL_@PACKAGE_VERSION@_la_OBJECTS) $(libmyrngWELL_@PACKAGE_VERSION@_la_LIBADD) $(LIBS)
@@ -469,12 +461,8 @@ testWELL$(EXEEXT): $(testWELL_OBJECTS) $(testWELL_DEPENDENCIES) $(EXTRA_testWELL
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.$(OBJEXT)
-	-rm -f myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo
 	-rm -f myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.$(OBJEXT)
 	-rm -f myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo
-	-rm -f myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.$(OBJEXT)
-	-rm -f myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo
 	-rm -f myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.$(OBJEXT)
 	-rm -f myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo
 	-rm -f test/testMT-testMT.$(OBJEXT)
@@ -483,9 +471,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@myrng/$(DEPDIR)/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@myrng/$(DEPDIR)/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/testMT-testMT.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/testWELL-testWELL.Po@am__quote@
@@ -521,26 +507,12 @@ myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo: myrng/myrngMT.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngMT_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o myrng/libmyrngMT_@PACKAGE_VERSION@_la-myrngMT.lo `test -f 'myrng/myrngMT.cpp' || echo '$(srcdir)/'`myrng/myrngMT.cpp
 
-myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo: myrng/MTEngine.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngMT_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo -MD -MP -MF myrng/$(DEPDIR)/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.Tpo -c -o myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo `test -f 'myrng/MTEngine.cpp' || echo '$(srcdir)/'`myrng/MTEngine.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) myrng/$(DEPDIR)/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.Tpo myrng/$(DEPDIR)/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='myrng/MTEngine.cpp' object='myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngMT_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o myrng/libmyrngMT_@PACKAGE_VERSION@_la-MTEngine.lo `test -f 'myrng/MTEngine.cpp' || echo '$(srcdir)/'`myrng/MTEngine.cpp
-
 myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo: myrng/myrngWELL.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngWELL_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo -MD -MP -MF myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.Tpo -c -o myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo `test -f 'myrng/myrngWELL.cpp' || echo '$(srcdir)/'`myrng/myrngWELL.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.Tpo myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='myrng/myrngWELL.cpp' object='myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngWELL_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o myrng/libmyrngWELL_@PACKAGE_VERSION@_la-myrngWELL.lo `test -f 'myrng/myrngWELL.cpp' || echo '$(srcdir)/'`myrng/myrngWELL.cpp
-
-myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo: myrng/WELLEngine.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngWELL_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo -MD -MP -MF myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.Tpo -c -o myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo `test -f 'myrng/WELLEngine.cpp' || echo '$(srcdir)/'`myrng/WELLEngine.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.Tpo myrng/$(DEPDIR)/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='myrng/WELLEngine.cpp' object='myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmyrngWELL_@PACKAGE_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o myrng/libmyrngWELL_@PACKAGE_VERSION@_la-WELLEngine.lo `test -f 'myrng/WELLEngine.cpp' || echo '$(srcdir)/'`myrng/WELLEngine.cpp
 
 test/testMT-testMT.o: test/testMT.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testMT_CXXFLAGS) $(CXXFLAGS) -MT test/testMT-testMT.o -MD -MP -MF test/$(DEPDIR)/testMT-testMT.Tpo -c -o test/testMT-testMT.o `test -f 'test/testMT.cpp' || echo '$(srcdir)/'`test/testMT.cpp
