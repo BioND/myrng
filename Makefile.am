@@ -12,12 +12,10 @@ libmyrngWELL_@PACKAGE_VERSION@_la_LDFLAGS = -version-info 0:0:0
 libmyrngMT_@PACKAGE_VERSION@_la_LDFLAGS = -version-info 0:0:0
 
 libmyrngWELL_@PACKAGE_VERSION@_la_SOURCES = \
-	myrng/myrngWELL.cpp \
-	myrng/WELLEngine.cpp
+	myrng/myrngWELL.cpp
 	
 libmyrngMT_@PACKAGE_VERSION@_la_SOURCES = \
-	myrng/myrngMT.cpp \
-	myrng/MTEngine.cpp
+	myrng/myrngMT.cpp 
 
 nobase_include_HEADERS = \
 	myrng/myrng.h \
@@ -33,8 +31,8 @@ check_PROGRAMS = testWELL testMT
 testWELL_SOURCES = test/testWELL.cpp test/RNGTests.h
 testMT_SOURCES = test/testMT.cpp test/RNGTests.h
 
-testWELL_CXXFLAGS = -O2 -DNDEBUG
-testMT_CXXFLAGS = -O2 -DNDEBUG
+testWELL_CXXFLAGS = -O2 -DNDEBUG -I$(srcdir)/myrng
+testMT_CXXFLAGS = -O2 -DNDEBUG -I$(srcdir)/myrng
 
 testWELL_LDADD = libmyrngWELL-@PACKAGE_VERSION@.la
 testMT_LDADD = libmyrngMT-@PACKAGE_VERSION@.la
