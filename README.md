@@ -20,12 +20,15 @@ distribution is based on [Marsagli and Tsang, 2000][4].
 [4]: http://dx.doi.org/10.1145/358407.358414 "G. Marsaglia and W.W. Tsang: A simple method for generating gamma variables, ACM TOMS 26, 2000."
  
 ## Getting started
-To use the class include _either_ `myrngMT.h` (MT19937a) _or_ `myrngWELL.h` (WELL1024a)
-in your code. Including the header files creates an instance of the corresponding
-`myrng::RandomVariates` class called `rng`. Then, random variates can be obtained by calling
-the corresponding member functions.
+MyRNG can be used as a shared or header-only library. To use it as a shared 
+library include _either_ `myrngMT.h` (MT19937a) _or_ `myrngWELL.h` (WELL1024a)
+in your code, and _link the compiled binaries to_ `libmyrngMT` or `libmyrngWELL`,
+respectively. Including the header files creates an instance of the
+corresponding `myrng::RandomVariates` class called `rng`. Random variates can 
+be obtained by calling the corresponding member functions.
 
-For instance, a random variable from a uniform distribution between 0 and 1 can be obtained as
+For instance, a random variable from a uniform distribution between 0 and 1 can
+be obtained as
 
 ```C++
 #include <myrngWELL.h>      // use the WELL1024a generator
@@ -38,10 +41,11 @@ and a random variable from an exponential distribution with mean `m` as
 #include <myrngMT.h>       // let's use the MT19937 generator
 double m = 0.7;
 double v = rng.Exponential(m);
-```
+``` 
 
-If you prefer to create your own instance of the random number generator instead of using a
-global variable, do _not_ include the above header files. Instead, use for this purpose
+The preferred method to use MyRNG is to create your own instance of the random
+number generator instead of using a global variable. To that end, do _not_ 
+include the above header files. Instead, use for this purpose
 
 ```C++
 #include <myrng.h>
@@ -50,6 +54,9 @@ myrng::MT19937 rng_mt;     // random variates using the MT19937 generator
 double x = rng_well.Exponential(0.3);
 double y = rng_mt.Exponential(0.7);
 ```
+
+In this case, you do not have to link the compiled binaries to additional
+libraries.
 
 For further information see the full source code documentation, which you can extract
 using the doxygen source code documentation tool.
