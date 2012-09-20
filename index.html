@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>MyRNG by BioND</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>MyRNG</h1>
+        <p>A convenient random number generator</p>
+        <p class="view"><a href="https://github.com/BioND/myrng">View the Project on GitHub <small>BioND/myrng</small></a></p>
+        <ul>
+          <li><a href="https://github.com/BioND/myrng/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/BioND/myrng/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/BioND/myrng">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>MyRNG: A convenient random number generator</h1>
+
+<p>The MyRNG C++ classes provide two very efficient random number generators
+and several methods for generating random variates. You can choose between
+the Mersenne Twister MT19937a algorithm in the implementation of <a href="http://www.math.sci.hiroshima-u.ac.jp/%7Em-mat/MT/emt.html" title="M. Matsumoto and T. Nishimura. Personal web pages.">Makoto
+Matsumoto and Takuji Nishimura</a> and the well-equidistributed long-period
+linear generator <a href="http://dx.doi.org/10.1145/1132973.1132974" title="F. Panneton et al.: Improved long-period generators based on linear recurrences modulo 2, ACM Transactions on Mathematical Software, 32(1), 1-16,2006.">WELL1024a</a> implemented by Marton Morvai. Both generators are
+essentially shuffled linear congruential random number generators; they should
+not be used for cryptography applications but should otherwise cover most
+scientific needs. While the WELL1024a is slightly faster in the current
+implementation, the MT19937a has an astronomical recurrence time of 2^19937.
+Furthermore, the methods are provided to generate several random variates
+including uniform, Gaussian, Beta, and Gamma distributions. Generation of most
+random variates is based on <a href="http://dl.acm.org/citation.cfm?id=550113" title="A.M. Law and W.D. Kelton: Simulation, modeling and analysis, Third Edition, McGraw Hill, 2006.">Law and Kelton, 2000</a>. Generation of the Gamma
+distribution is based on <a href="http://dx.doi.org/10.1145/358407.358414" title="G. Marsaglia and W.W. Tsang: A simple method for generating gamma variables, ACM TOMS 26, 2000.">Marsagli and Tsang, 2000</a>.</p>
+
+<h2>Getting started</h2>
+
+<p>MyRNG can be used as a shared or header-only library. To use it as a shared 
+library include <em>either</em> <code>myrngMT.h</code> (MT19937a) <em>or</em> <code>myrngWELL.h</code> (WELL1024a)
+in your code, and <em>link the compiled binaries to</em> <code>libmyrngMT</code> or <code>libmyrngWELL</code>,
+respectively. Including the header files creates an instance of the
+corresponding <code>myrng::RandomVariates</code> class called <code>rng</code>. Random variates can 
+be obtained by calling the corresponding member functions.</p>
+
+<p>For instance, a random variable from a uniform distribution between 0 and 1 can
+be obtained as</p>
+
+<div class="highlight"><pre><span class="cp">#include &lt;myrngWELL.h&gt;      </span><span class="c1">// use the WELL1024a generator</span>
+<span class="kt">double</span> <span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="n">Uniform01</span><span class="p">();</span>
+</pre></div>
+
+<p>and a random variable from an exponential distribution with mean <code>m</code> as</p>
+
+<div class="highlight"><pre><span class="cp">#include &lt;myrngMT.h&gt;       </span><span class="c1">// let's use the MT19937 generator</span>
+<span class="kt">double</span> <span class="n">m</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">v</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+</pre></div>
+
+<p>The preferred method to use MyRNG is to create your own instance of the random
+number generator instead of using a global variable. To that end, do <em>not</em> 
+include the above header files. Instead, use for this purpose</p>
+
+<div class="highlight"><pre><span class="cp">#include &lt;myrng.h&gt;</span>
+<span class="n">myrng</span><span class="o">::</span><span class="n">WELL1024a</span> <span class="n">rng_well</span><span class="p">;</span> <span class="c1">// random variates using the WELL1024a generator</span>
+<span class="n">myrng</span><span class="o">::</span><span class="n">MT19937</span> <span class="n">rng_mt</span><span class="p">;</span>     <span class="c1">// random variates using the MT19937 generator</span>
+<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">rng_well</span><span class="p">.</span><span class="n">Exponential</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rng_mt</span><span class="p">.</span><span class="n">Exponential</span><span class="p">(</span><span class="mf">0.7</span><span class="p">);</span>
+</pre></div>
+
+<p>In this case, you do not have to link the compiled binaries to additional
+libraries.</p>
+
+<p>For further information see the full source code documentation, which you can extract
+using the doxygen source code documentation tool.</p>
+
+<h2>Disclaimer</h2>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/BioND">BioND</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
